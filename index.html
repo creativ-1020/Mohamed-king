@@ -545,21 +545,59 @@
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
-    // بيانات العروض
+    // ========== بيانات العروض ==========
+    // عروض QR مع تحديد النوع
     const qrOffers = [
-        { uc: 325, price: 210 }, { uc: 385, price: 260 }, { uc: 660, price: 415 },
-        { uc: 720, price: 465 }, { uc: 985, price: 625 }, { uc: 1320, price: 830 },
-        { uc: 1800, price: 1050 }, { uc: 3850, price: 2080 }, { uc: 8100, price: 4120 }
+        { uc: 325, price: 210, type: "QR", typeName: "شحن بالاكونت QR" },
+        { uc: 385, price: 260, type: "QR", typeName: "شحن بالاكونت QR" },
+        { uc: 660, price: 415, type: "QR", typeName: "شحن بالاكونت QR" },
+        { uc: 720, price: 465, type: "QR", typeName: "شحن بالاكونت QR" },
+        { uc: 985, price: 625, type: "QR", typeName: "شحن بالاكونت QR" },
+        { uc: 1320, price: 830, type: "QR", typeName: "شحن بالاكونت QR" },
+        { uc: 1800, price: 1050, type: "QR", typeName: "شحن بالاكونت QR" },
+        { uc: 3850, price: 2080, type: "QR", typeName: "شحن بالاكونت QR" },
+        { uc: 8100, price: 4120, type: "QR", typeName: "شحن بالاكونت QR" }
     ];
+
+    // عروض ID مع تحديد النوع
     const idOffers = [
-        { uc: 60, price: 55 }, { uc: 120, price: 110 }, { uc: 325, price: 230 },
-        { uc: 385, price: 285 }, { uc: 660, price: 440 }, { uc: 720, price: 495 },
-        { uc: 985, price: 670 }, { uc: 1800, price: 1130 }, { uc: 3850, price: 2280 },
-        { uc: 8100, price: 4350 }
+        { uc: 60, price: 55, type: "ID", typeName: "شحن ببجي ID" },
+        { uc: 120, price: 110, type: "ID", typeName: "شحن ببجي ID" },
+        { uc: 325, price: 230, type: "ID", typeName: "شحن ببجي ID" },
+        { uc: 385, price: 285, type: "ID", typeName: "شحن ببجي ID" },
+        { uc: 660, price: 440, type: "ID", typeName: "شحن ببجي ID" },
+        { uc: 720, price: 495, type: "ID", typeName: "شحن ببجي ID" },
+        { uc: 985, price: 670, type: "ID", typeName: "شحن ببجي ID" },
+        { uc: 1800, price: 1130, type: "ID", typeName: "شحن ببجي ID" },
+        { uc: 3850, price: 2280, type: "ID", typeName: "شحن ببجي ID" },
+        { uc: 8100, price: 4350, type: "ID", typeName: "شحن ببجي ID" }
     ];
+
+    // عروض سريعة (أول 4 عروض من QR)
     const quickOffers = qrOffers.slice(0, 4);
 
-    // عرض البطاقات
+    // رقم الواتساب الخاص بالمتجر
+    const WHATSAPP_NUMBER = "201044905798";
+
+    // ========== دالة إنشاء رسالة واتساب مخصصة ==========
+    function getWhatsAppMessage(offer) {
+        const message = `لو سمحت انا عاوز اشحن *${offer.typeName}* 🎮
+
+┌─────────────────
+│ 📦 عدد الشدات: ${offer.uc} UC
+│ 💰 السعر: ${offer.price} ج.م
+│ 🚀 الشحن: فوري
+└─────────────────
+
+📲 ياريت تبعتلي رقم الكاش الخاص بالتحويل
+وشكراً 🌟
+
+#UC_VICTOR_MAN`;
+        
+        return encodeURIComponent(message);
+    }
+
+    // ========== عرض البطاقات ==========
     function renderOffers(containerId, offers) {
         const container = document.getElementById(containerId);
         if(!container) return;
@@ -567,7 +605,7 @@
             <div class="offer-card">
                 <h3>${offer.uc} UC</h3>
                 <div class="price">${offer.price} <small>ج.م</small></div>
-                <button class="btn-order" data-uc="${offer.uc}" data-price="${offer.price}">اطلب</button>
+                <button class="btn-order" data-uc="${offer.uc}" data-price="${offer.price}" data-type="${offer.type}" data-typename="${offer.typeName}">اطلب</button>
             </div>
         `).join('');
     }
@@ -576,7 +614,7 @@
     renderOffers('qrOffersGrid', qrOffers);
     renderOffers('idOffersGrid', idOffers);
 
-    // آراء العملاء (15 رأي)
+    // ========== آراء العملاء (15 رأي) ==========
     const reviews = [
         { name: "أحمد محمد", stars: 5, text: "أفضل متجر شدات في مصر، شحن فوري وسعر ممتاز" },
         { name: "كريم سيد", stars: 5, text: "تعامل راقي وسرعة في الشحن، أنصح بالتعامل معهم" },
@@ -618,7 +656,7 @@
         });
     }
 
-    // التنقل بين الصفحات
+    // ========== التنقل بين الصفحات ==========
     const pages = document.querySelectorAll('.page');
     const navBtns = document.querySelectorAll('.nav-btn');
 
@@ -634,10 +672,10 @@
         btn.addEventListener('click', () => showPage(btn.dataset.page));
     });
 
-    // إشعار وطلب
+    // ========== معالج الطلب مع رسالة واتساب مخصصة ==========
     const toast = document.getElementById('toast');
     function showToastMsg(msg) {
-        toast.innerText = msg || '✨ جاري التحويل إلى واتساب ✨';
+        toast.innerText = msg;
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 2000);
     }
@@ -646,14 +684,29 @@
         if(e.target.classList.contains('btn-order')) {
             const uc = e.target.dataset.uc;
             const price = e.target.dataset.price;
-            showToastMsg(`✨ جاري تحويلك لطلب ${uc} UC بسعر ${price} ج.م ✨`);
+            const typeName = e.target.dataset.typename;
+            
+            // إنشاء كائن العرض
+            const offer = {
+                uc: uc,
+                price: price,
+                typeName: typeName
+            };
+            
+            // إنشاء رسالة واتساب
+            const message = getWhatsAppMessage(offer);
+            
+            // عرض إشعار
+            showToastMsg(`✨ جاري تحويلك لطلب ${uc} UC ✨`);
+            
+            // فتح واتساب بعد 1.5 ثانية
             setTimeout(() => {
-                window.open(`https://wa.me/201044905798?text=أريد%20طلب%20${uc}%20UC%20بسعر%20${price}%20ج.م`, '_blank');
+                window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
             }, 1500);
         }
     });
 
-    // زر العودة للأعلى
+    // ========== زر العودة للأعلى ==========
     const scrollBtn = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
         if(window.scrollY > 300) scrollBtn.classList.add('show');
