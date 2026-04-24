@@ -2,7 +2,7 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>عيد ميلاد محمد 🎂 | محمد</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFD700'%3E%3Cpath d='M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2Z'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -21,6 +21,7 @@
             position: relative;
         }
 
+        /* نجوم خفيفة */
         .stars {
             position: fixed;
             top: 0;
@@ -34,42 +35,27 @@
             position: absolute;
             background: #FFD700;
             border-radius: 50%;
-            opacity: 0.6;
-            animation: twinkle 3s infinite;
+            opacity: 0.4;
+            animation: twinkle 4s infinite;
         }
         @keyframes twinkle {
-            0%, 100% { opacity: 0.2; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
+            0%, 100% { opacity: 0.1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
         }
 
-        .heart {
-            position: absolute;
-            bottom: -50px;
-            font-size: 20px;
-            animation: floatHeart 6s infinite ease-in;
-            pointer-events: none;
-            z-index: 0;
-        }
-        @keyframes floatHeart {
-            0% { bottom: -50px; opacity: 0; transform: translateX(0); }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { bottom: 110%; opacity: 0; transform: translateX(40px); }
-        }
-
-        .gift {
+        /* عناصر متحركة خفيفة (قلوب وهدايا) */
+        .floating-item {
             position: absolute;
             bottom: -80px;
-            font-size: 30px;
-            animation: floatGift 8s infinite ease-in;
             pointer-events: none;
             z-index: 0;
+            will-change: transform;
         }
-        @keyframes floatGift {
-            0% { bottom: -80px; opacity: 0; transform: translateX(0) rotate(0deg); }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { bottom: 110%; opacity: 0; transform: translateX(-30px) rotate(10deg); }
+        @keyframes floatUp {
+            0% { bottom: -80px; opacity: 0; transform: translateX(0); }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.6; }
+            100% { bottom: 110%; opacity: 0; transform: translateX(30px); }
         }
 
         .container {
@@ -84,269 +70,230 @@
 
         .birthday-card {
             background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(20px);
-            border-radius: 60px;
-            padding: 50px 40px;
+            backdrop-filter: blur(15px);
+            border-radius: 50px;
+            padding: 35px 25px;
             text-align: center;
-            max-width: 800px;
+            max-width: 750px;
             width: 100%;
             border: 2px solid rgba(255, 215, 0, 0.5);
-            box-shadow: 0 0 50px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
         }
 
         .crown-icon {
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: #FFD700;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             animation: crownGlow 2s infinite;
         }
         @keyframes crownGlow {
-            0%, 100% { text-shadow: 0 0 10px #FFD700; }
-            50% { text-shadow: 0 0 30px #FFD700, 0 0 10px #FFA500; }
+            0%, 100% { text-shadow: 0 0 5px #FFD700; }
+            50% { text-shadow: 0 0 20px #FFD700; }
         }
 
         .name-title {
-            font-size: 3rem;
+            font-size: 2.2rem;
             font-weight: bold;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
         }
-        .typing-text {
-            border-right: 3px solid #FFD700;
-            white-space: nowrap;
-            overflow: hidden;
-            display: inline-block;
-            animation: typing 2s steps(20, end), blink 0.75s step-end infinite;
-        }
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        @keyframes blink {
-            from, to { border-color: transparent; }
-            50% { border-color: #FFD700; }
+        @media (max-width: 600px) {
+            .name-title { font-size: 1.8rem; }
+            .birthday-card { padding: 25px 18px; }
+            .countdown-number { font-size: 1.8rem; }
+            .countdown-box { min-width: 65px; padding: 12px; }
+            .wish-text { font-size: 0.85rem; }
         }
 
         .countdown-title {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #FFD700;
-            margin: 30px 0 20px;
-            letter-spacing: 2px;
+            margin: 25px 0 15px;
         }
         .countdown-container {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 15px;
             flex-wrap: wrap;
-            margin: 30px 0;
+            margin: 20px 0;
         }
         .countdown-box {
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 20px;
-            padding: 20px;
-            min-width: 100px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 18px;
+            padding: 12px;
+            min-width: 75px;
             border: 1px solid rgba(255, 215, 0, 0.3);
         }
         .countdown-number {
-            font-size: 3rem;
+            font-size: 2rem;
             font-weight: bold;
             color: #FFD700;
             font-family: monospace;
         }
         .countdown-label {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 5px;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.6);
         }
 
         .birthday-message {
             display: none;
-            animation: fadeInUp 0.8s ease;
+            animation: fadeInUp 0.6s ease;
         }
         .birthday-message h2 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: #FFD700;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .cake-icon {
-            font-size: 5rem;
-            margin: 20px 0;
+            font-size: 4rem;
+            margin: 15px 0;
             display: inline-block;
             animation: cakeBounce 1s infinite;
         }
         @keyframes cakeBounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
         }
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .inspire-message {
-            margin: 30px 0;
-            padding: 15px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 50px;
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            margin: 20px 0;
+            padding: 12px;
+            background: rgba(255, 215, 0, 0.08);
+            border-radius: 40px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 215, 0, 0.2);
             transition: opacity 0.3s;
         }
 
         .love-message {
-            margin: 20px 0;
-            padding: 12px;
-            background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,215,0,0.05));
-            border-radius: 50px;
-            font-size: 1.1rem;
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255,215,0,0.1);
+            border-radius: 40px;
+            font-size: 1rem;
             color: #FFF8DC;
-            font-weight: bold;
+            font-weight: 500;
         }
 
-        /* شريط الأمنيات الدوار */
         .wishes-rotator {
-            margin: 30px 0;
-            padding: 25px 20px;
+            margin: 25px 0;
+            padding: 20px 15px;
             background: rgba(255, 215, 0, 0.05);
-            border-radius: 40px;
-            border: 1px solid rgba(255, 215, 0, 0.25);
-            min-height: 130px;
+            border-radius: 35px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            min-height: 110px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
         }
 
         .wish-slide {
-            position: absolute;
-            width: 90%;
+            width: 100%;
             text-align: center;
             opacity: 0;
-            transform: translateX(30px);
-            transition: all 0.5s ease;
+            transform: scale(0.95);
+            transition: all 0.4s ease;
+            position: absolute;
         }
-
         .wish-slide.active {
             opacity: 1;
-            transform: translateX(0);
+            transform: scale(1);
             position: relative;
         }
-
-        .wish-slide.exit {
-            opacity: 0;
-            transform: translateX(-30px);
-        }
-
         .wish-text {
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.5;
             color: #FFF8DC;
-            margin: 10px 0;
         }
-
         .wish-sender {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #FFD700;
+            margin-top: 8px;
             font-weight: bold;
         }
 
         .wish-dots {
             display: flex;
             justify-content: center;
-            gap: 8px;
-            margin-top: 15px;
+            gap: 6px;
+            margin: 10px 0;
         }
-
         .wish-dot {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             background: rgba(255, 215, 0, 0.3);
-            transition: all 0.3s;
+            transition: 0.2s;
         }
-
         .wish-dot.active {
             background: #FFD700;
-            width: 20px;
-            border-radius: 10px;
+            width: 18px;
+            border-radius: 8px;
         }
 
         .wish-form {
             display: flex;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 8px;
+            margin-top: 15px;
             flex-wrap: wrap;
         }
         .wish-input {
             flex: 1;
-            padding: 12px;
-            border-radius: 50px;
+            padding: 10px 15px;
+            border-radius: 40px;
             border: 1px solid #FFD700;
             background: rgba(0, 0, 0, 0.5);
             color: white;
-            font-family: inherit;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
         .send-wish-btn {
             background: #FFD700;
             border: none;
-            padding: 12px 25px;
-            border-radius: 50px;
+            padding: 10px 20px;
+            border-radius: 40px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.2s;
         }
 
-        .music-btn {
+        .music-btn, .share-btn {
             position: fixed;
             bottom: 20px;
-            right: 20px;
-            width: 55px;
-            height: 55px;
+            width: 48px;
+            height: 48px;
             background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            border: 2px solid #FFD700;
+            backdrop-filter: blur(8px);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             z-index: 100;
-            transition: 0.3s;
+            transition: 0.2s;
+            font-size: 1.3rem;
+        }
+        .music-btn {
+            right: 20px;
+            border: 2px solid #FFD700;
             color: #FFD700;
-            font-size: 1.5rem;
         }
-        .music-btn.playing {
-            animation: musicPulse 1s infinite;
+        .share-btn {
+            left: 20px;
+            border: 2px solid #25D366;
+            color: #25D366;
         }
+        .music-btn.playing { animation: musicPulse 1s infinite; }
         @keyframes musicPulse {
             0%, 100% { box-shadow: 0 0 5px #FFD700; }
-            50% { box-shadow: 0 0 20px #FFD700; }
-        }
-
-        .share-btn {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 55px;
-            height: 55px;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            border: 2px solid #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 100;
-            transition: 0.3s;
-            color: #25D366;
-            font-size: 1.5rem;
+            50% { box-shadow: 0 0 15px #FFD700; }
         }
 
         .popup-overlay {
@@ -362,40 +309,32 @@
             justify-content: center;
             visibility: hidden;
             opacity: 0;
-            transition: 0.3s;
+            transition: 0.2s;
         }
-        .popup-overlay.show {
-            visibility: visible;
-            opacity: 1;
-        }
+        .popup-overlay.show { visibility: visible; opacity: 1; }
         .popup-content {
             background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
             border: 2px solid #FFD700;
-            border-radius: 50px;
-            padding: 40px;
+            border-radius: 40px;
+            padding: 30px;
             text-align: center;
-            max-width: 400px;
-            width: 90%;
-            animation: popupZoom 0.4s ease;
+            max-width: 350px;
+            width: 85%;
+            animation: popupZoom 0.3s ease;
         }
         @keyframes popupZoom {
-            from { transform: scale(0.8); opacity: 0; }
+            from { transform: scale(0.9); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
-        .popup-content h2 {
-            color: #FFD700;
-            font-size: 2rem;
-            margin: 20px 0;
-        }
+        .popup-content h2 { color: #FFD700; font-size: 1.6rem; margin: 15px 0; }
         .close-popup {
             background: #FFD700;
             border: none;
-            padding: 10px 30px;
-            border-radius: 50px;
-            font-size: 1rem;
+            padding: 8px 25px;
+            border-radius: 40px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         canvas#confettiCanvas {
@@ -409,25 +348,13 @@
         }
 
         .footer {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 215, 0, 0.2);
-            font-size: 0.7rem;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 215, 0, 0.15);
+            font-size: 0.65rem;
             color: rgba(255, 255, 255, 0.5);
         }
-        .footer a {
-            color: #FFD700;
-            text-decoration: none;
-        }
-
-        @media (max-width: 600px) {
-            .birthday-card { padding: 30px 20px; }
-            .name-title { font-size: 1.8rem; }
-            .countdown-number { font-size: 2rem; }
-            .countdown-box { min-width: 70px; padding: 15px; }
-            .countdown-container { gap: 10px; }
-            .wish-text { font-size: 0.85rem; }
-        }
+        .footer a { color: #FFD700; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -440,9 +367,9 @@
     <div class="birthday-card">
         <div class="crown-icon"><i class="fas fa-crown"></i></div>
         <div class="name-title">
-            <span class="typing-text">محمد</span>
+            محمد
         </div>
-        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">كل سنة وأنت طيب</p>
+        <p style="color: rgba(255,255,255,0.6); margin-bottom: 15px;">كل سنة وأنت طيب يا غالي</p>
 
         <div id="countdownSection">
             <div class="countdown-title">🎂 المتبقي على عيد ميلادك 🎂</div>
@@ -456,7 +383,7 @@
 
         <div id="birthdayMessage" class="birthday-message">
             <div class="cake-icon">🎂🎉</div>
-            <h2>🎉 كل سنة وأنت بخير 🎉</h2>
+            <h2>🎉 كل سنة وأنت بخير يا محمد 🎉</h2>
             <p>عيد ميلاد سعيد يا محمد<br>أتمنى لك عاماً مليئاً بالفرح والنجاح والسعادة</p>
             <div class="cake-icon">🎈🎁✨</div>
         </div>
@@ -465,15 +392,14 @@
 
         <div class="inspire-message" id="inspireMessage">"أنت شخص رائع، يومك جميل، وكل لحظة في حياتك تستحق الاحتفال"</div>
 
-        <!-- شريط الأمنيات الدوار (100 رسالة تظهر بشكل دائري) -->
         <div class="wishes-rotator">
-            <div id="wishSlider" style="width: 100%;"></div>
+            <div id="wishSlider" style="width: 100%; position: relative; min-height: 80px;"></div>
         </div>
         <div class="wish-dots" id="wishDots"></div>
 
         <div class="wish-form">
-            <input type="text" id="wishInput" class="wish-input" placeholder="اكتب تهنئتك هنا... ستظهر في قائمة الأمنيات">
-            <button id="sendWishBtn" class="send-wish-btn">🎁 أرسل تهنئة</button>
+            <input type="text" id="wishInput" class="wish-input" placeholder="اكتب تهنئتك لمحمد...">
+            <button id="sendWishBtn" class="send-wish-btn">🎁 أرسل</button>
         </div>
 
         <div class="footer">
@@ -487,7 +413,7 @@
 
 <div id="welcomePopup" class="popup-overlay">
     <div class="popup-content">
-        <i class="fas fa-gift" style="font-size: 3rem; color: #FFD700;"></i>
+        <i class="fas fa-gift" style="font-size: 2.5rem; color: #FFD700;"></i>
         <h2>🎉 مرحباً يا محمد 🎉</h2>
         <p style="color: white;">نحن نحتفل بقرب عيد ميلادك<br>كل عام وأنت بألف خير</p>
         <button class="close-popup" id="closePopup">🎂 ادخل للاحتفال 🎂</button>
@@ -495,203 +421,201 @@
 </div>
 
 <script>
-    // ========== موسيقى Happy Birthday ==========
-    let audioContext = null;
-    let musicPlaying = true;
-    let musicInterval = null;
-    let currentNoteIndex = 0;
-    
-    const birthdayMelody = [
-        { note: 262, duration: 400 }, { note: 262, duration: 400 }, { note: 294, duration: 800 },
-        { note: 262, duration: 800 }, { note: 349, duration: 800 }, { note: 330, duration: 1200 },
-        { note: 262, duration: 400 }, { note: 262, duration: 400 }, { note: 294, duration: 800 },
-        { note: 262, duration: 800 }, { note: 392, duration: 800 }, { note: 349, duration: 1200 },
-        { note: 262, duration: 400 }, { note: 262, duration: 400 }, { note: 523, duration: 800 },
-        { note: 440, duration: 800 }, { note: 349, duration: 800 }, { note: 330, duration: 800 },
-        { note: 294, duration: 1200 }, { note: 466, duration: 400 }, { note: 466, duration: 400 },
-        { note: 440, duration: 800 }, { note: 349, duration: 800 }, { note: 392, duration: 800 },
-        { note: 349, duration: 1200 }
-    ];
-
-    function playBirthdayMusic() {
-        if(!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        if(musicInterval) clearInterval(musicInterval);
-        currentNoteIndex = 0;
-        musicInterval = setInterval(() => {
-            if(musicPlaying && currentNoteIndex < birthdayMelody.length) {
-                const { note, duration } = birthdayMelody[currentNoteIndex];
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                oscillator.frequency.value = note;
-                gainNode.gain.value = 0.15;
-                oscillator.start();
-                gainNode.gain.exponentialRampToValueAtTime(0.00001, audioContext.currentTime + (duration / 1000));
-                oscillator.stop(audioContext.currentTime + (duration / 1000));
-                currentNoteIndex++;
-                if(currentNoteIndex >= birthdayMelody.length) setTimeout(() => { if(musicPlaying) currentNoteIndex = 0; }, 500);
-            }
-        }, 100);
-    }
-
-    function tryAutoPlay() {
-        if(audioContext && audioContext.state === 'suspended') audioContext.resume().then(() => playBirthdayMusic());
-        else if(!audioContext) { audioContext = new (window.AudioContext || window.webkitAudioContext)(); audioContext.resume().then(() => playBirthdayMusic()); }
-        else playBirthdayMusic();
-    }
-
-    document.body.addEventListener('click', () => { if(!audioContext || !musicInterval) tryAutoPlay(); }, { once: true });
-    const musicBtn = document.getElementById('musicBtn');
-    musicBtn.addEventListener('click', () => {
-        musicPlaying = !musicPlaying;
-        if(musicPlaying) { musicBtn.classList.add('playing'); playBirthdayMusic(); }
-        else { musicBtn.classList.remove('playing'); if(musicInterval) clearInterval(musicInterval); musicInterval = null; }
-    });
-    setTimeout(() => { tryAutoPlay(); }, 1000);
-
-    // ========== عيد الميلاد 9 يوليو ==========
-    const BIRTHDAY = { month: 6, day: 9 };
-    function getNextBirthday() {
-        const now = new Date();
-        let birthday = new Date(now.getFullYear(), BIRTHDAY.month, BIRTHDAY.day);
-        if (now > birthday) birthday = new Date(now.getFullYear() + 1, BIRTHDAY.month, BIRTHDAY.day);
-        return birthday;
-    }
-
-    function updateCountdown() {
-        const now = new Date();
-        const nextBirthday = getNextBirthday();
-        const diff = nextBirthday - now;
-        const countdownSection = document.getElementById('countdownSection');
-        const birthdayMessageDiv = document.getElementById('birthdayMessage');
-        if (diff <= 0) { countdownSection.style.display = 'none'; birthdayMessageDiv.style.display = 'block'; startConfetti(); return; }
-        countdownSection.style.display = 'block'; birthdayMessageDiv.style.display = 'none';
-        document.getElementById('days').innerHTML = Math.floor(diff / (1000*60*60*24)).toString().padStart(2,'0');
-        document.getElementById('hours').innerHTML = Math.floor((diff % (86400000)) / (1000*60*60)).toString().padStart(2,'0');
-        document.getElementById('minutes').innerHTML = Math.floor((diff % (3600000)) / (1000*60)).toString().padStart(2,'0');
-        document.getElementById('seconds').innerHTML = Math.floor((diff % 60000) / 1000).toString().padStart(2,'0');
-    }
-    setInterval(updateCountdown, 1000); updateCountdown();
-
-    function startConfetti() {
-        const canvas = document.getElementById('confettiCanvas'); const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-        const particles = [];
-        for(let i = 0; i < 150; i++) particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height - canvas.height, size: Math.random() * 8 + 3, color: `hsl(${Math.random() * 60 + 40}, 100%, 60%)`, speedY: Math.random() * 5 + 3, speedX: (Math.random() - 0.5) * 2, rotation: Math.random() * 360, rotationSpeed: (Math.random() - 0.5) * 10 });
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            let still = false;
-            for(let p of particles) { if(p.y < canvas.height + 50) still = true; p.y += p.speedY; p.x += p.speedX; p.rotation += p.rotationSpeed; ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rotation * Math.PI / 180); ctx.fillStyle = p.color; ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size); ctx.restore(); }
-            if(still) requestAnimationFrame(animate); else ctx.clearRect(0, 0, canvas.width, canvas.height);
+    (function() {
+        // ------ موسيقى Happy Birthday خفيفة ------
+        let audioContext = null;
+        let musicPlaying = true;
+        let musicInterval = null;
+        let currentNoteIndex = 0;
+        const birthdayMelody = [
+            { note: 262, duration: 400 },{ note: 262, duration: 400 },{ note: 294, duration: 800 },
+            { note: 262, duration: 800 },{ note: 349, duration: 800 },{ note: 330, duration: 1200 },
+            { note: 262, duration: 400 },{ note: 262, duration: 400 },{ note: 294, duration: 800 },
+            { note: 262, duration: 800 },{ note: 392, duration: 800 },{ note: 349, duration: 1200 },
+            { note: 262, duration: 400 },{ note: 262, duration: 400 },{ note: 523, duration: 800 },
+            { note: 440, duration: 800 },{ note: 349, duration: 800 },{ note: 330, duration: 800 },
+            { note: 294, duration: 1200 },{ note: 466, duration: 400 },{ note: 466, duration: 400 },
+            { note: 440, duration: 800 },{ note: 349, duration: 800 },{ note: 392, duration: 800 },
+            { note: 349, duration: 1200 }
+        ];
+        function playBirthdayMusic() {
+            if(!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            if(musicInterval) clearInterval(musicInterval);
+            currentNoteIndex = 0;
+            musicInterval = setInterval(() => {
+                if(musicPlaying && currentNoteIndex < birthdayMelody.length) {
+                    const { note, duration } = birthdayMelody[currentNoteIndex];
+                    const osc = audioContext.createOscillator();
+                    const gain = audioContext.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioContext.destination);
+                    osc.frequency.value = note;
+                    gain.gain.value = 0.1;
+                    osc.start();
+                    gain.gain.exponentialRampToValueAtTime(0.00001, audioContext.currentTime + (duration/1000));
+                    osc.stop(audioContext.currentTime + (duration/1000));
+                    currentNoteIndex++;
+                    if(currentNoteIndex >= birthdayMelody.length) setTimeout(() => { if(musicPlaying) currentNoteIndex = 0; }, 500);
+                }
+            }, 100);
         }
-        animate();
-    }
-
-    // ========== قائمة 100 رسالة تهنئة دوارة ==========
-    const hundredWishes = [
-        "🎉 كل سنة وأنت طيب يا محمد! عقبال 100 سنة", "🌟 أنت شخص رائع، يستحق كل الخير في عيده", "💛 عيد ميلاد سعيد، ربنا يخليك لينا", "🎂 كل عام وأنت بألف خير، يا أغلى الناس", "✨ سنة جديدة سعيدة، مليئة بالنجاحات", "💪 أنت الأفضل دائماً، كل سنة وأنت قوي", "🎈 عقبال مليون سنة، وأنت في أحسن حال", "🌹 كل سنة وأنت زهرة في بستان الحلوين", "🏆 أنت الفائز دائماً، في كل شيء", "💙 من القلب أتمنى لك عاماً رائعاً", "🎁 أهديك كل الحب في يوم ميلادك", "🍰 عيد ميلاد سعيد، يا صاحب القلب الكبير", "💫 أنت نجم ساطع، كل سنة وأنت متألق", "🌈 حياتك ملونة بألوان الفرح", "🌸 كل سنة وأنت طيب، يا جميل", "🌟 نجاحاتك تتوج عامك، عيد ميلاد سعيد", "💛 أنت مصدر إلهام، كل سنة وأنت مبدع", "🎉 أفراحك تملأ الدنيا، عيد ميلاد سعيد", "⭐ كل سنة وأنت بخير، يا صديق العمر", "🎂 سنة حلوة يا جميل، عقبال 100 سنة", "💪 أنت قوي، أنت رائع، أنت مميز جداً", "🌹 يوم ميلادك، يوم فرح لكل من يعرفك", "✨ أتمنى لك سنة مليئة بالضحك", "🎈 كل لحظة معك جميلة، كل سنة وأنت بخير", "💙 أنت شخص استثنائي، يستحق كل الخير", "🏆 أنت البطل الحقيقي في كل شيء", "📚 علمتنا أن النجاح ليس صدفة، بل إصرار", "💚 من القلب أتمنى لك عاماً رائعاً", "🌞 يومك مثل الشمس، مشرق ودافئ", "🎁 أهديك كل الحب والتقدير في يوم ميلادك", "🍰 عيد ميلاد سعيد، يا صاحب القلب الكبير", "🕯️ كل شمعة في كعكتك، هي أمنية من أصدقائك", "💫 أنت نجم ساطع، لا يخفت أبداً", "🌈 حياتك ملونة بألوان الفرح والسعادة", "🌸 كل سنة وأنت زهرة في بستان الحلوين", "🍃 يوم ميلادك هو بداية فصل جديد من الإبداع", "📖 أنت قصة نجاح تُكتب بأحرف من ذهب", "🧡 ضحكتك تريح القلب، ابتسامتك تشرق الدنيا", "🎯 أهدافك دائماً تتحقق، لأنك تستحق الأفضل", "🔥 حماسك وشغفك يلهم الجميع", "🕊️ سلام وهدوء وفرح، هذا ما أتمناه لك", "🌊 مثل البحر، عمقك كبير وعطاؤك لا ينضب", "🏔️ أنت قوي مثل الجبال، ناصع مثل الثلج", "🍫 حياتك حلوة، مثل الشوكولاتة", "🎨 كل يوم في عمرك هو لوحة فنية جميلة", "💎 أنت جوهرة نادرة وغالية على قلوبنا", "🌲 شامخ مثل الشجر، عظيم في كل شيء", "🎼 حياتك مثل اللحن الجميل، تريح السامعين", "🦋 كل سنة وأنت تتحول لأجمل نسخة من نفسك", "🧭 أنت بوصلة الخير في حياتنا", "🎢 يوم ميلادك هو بداية رحلة جديدة ممتعة", "🍀 حظك سعيد، وقلبك حنون، وروحك طيبة", "🌠 أمنياتك كلها تتحقق، لأنك تستحقها", "🧘 أنت مصدر سلام للجميع", "🏅 أنت البطل الحقيقي، الفائز في ميدان الحياة", "💪 قدرتك على التحدي تجعلك شخصاً استثنائياً", "🧩 أنت قطعة البازل التي تجعل الصورة كاملة", "🕰️ كل ثانية معك ثمينة، كل يوم وسنة وأنت بخير", "💌 رسالتي لك: أنت مميز، وأتمنى لك كل الخير", "🌙 أتمنى لك ليالي مليئة بالأحلام السعيدة", "☀️ صباحك نور، ونهارك فرح، ومساؤك سلام", "🍬 ابتسامتك حلوة مثل السكر", "🧸 طيبتك تجعل الجميع يحبك", "🎭 حياتك مسرحية جميلة، وأنت بطلها", "🎪 كل يوم معك هو احتفال، وكل سنة وأنت جميل", "🌿 أنت مثل النسمة العليلة، تريح القلوب", "🌼 أزهار الربيع تتفتح فرحاً بيوم ميلادك", "🍁 خريف العمر لا يأتي, بل أنت شاب إلى الأبد", "❄️ أنت منير كالجليد، نقي كالثلج", "🔥 شغفك نار تحرق الصعاب", "💖 قلوبنا معك، في حزنك وفرحك", "🎊 أفراحنا تكتمل بوجودك", "🎁 هديتي لك: الدعاء بأن تكون سعيداً دائماً", "📿 ربنا يخليك لينا، ويحميك من كل شر", "🌹 كل ورود العالم لا تكفي لوصف جمال روحك", "🕯️ أدعو الله أن يطيل في عمرك، ويبارك فيه"
-    ];
-
-    let currentWishIndex = 0;
-    const sliderDiv = document.getElementById('wishSlider');
-    const dotsDiv = document.getElementById('wishDots');
-
-    function buildSlider() {
-        sliderDiv.innerHTML = '';
-        for(let i = 0; i < hundredWishes.length; i++) {
-            const slide = document.createElement('div');
-            slide.className = 'wish-slide';
-            slide.innerHTML = `
-                <div class="wish-text">✨ ${hundredWishes[i]} ✨</div>
-                <div class="wish-sender">— صديق محب 🎂</div>
-            `;
-            if(i === currentWishIndex) slide.classList.add('active');
-            sliderDiv.appendChild(slide);
+        function tryAutoPlay() {
+            if(audioContext && audioContext.state === 'suspended') audioContext.resume().then(() => playBirthdayMusic());
+            else if(!audioContext) { audioContext = new (window.AudioContext || window.webkitAudioContext)(); audioContext.resume().then(() => playBirthdayMusic()); }
+            else playBirthdayMusic();
         }
-        
-        dotsDiv.innerHTML = '';
-        for(let i = 0; i < Math.min(hundredWishes.length, 5); i++) {
-            const dot = document.createElement('div');
-            dot.className = 'wish-dot';
-            if(i === 0) dot.classList.add('active');
-            dotsDiv.appendChild(dot);
-        }
-    }
-
-    function showWish(index) {
-        const slides = document.querySelectorAll('.wish-slide');
-        if(!slides.length) return;
-        slides.forEach((slide, i) => {
-            if(i === index) {
-                slide.classList.add('active');
-                slide.classList.remove('exit');
-            } else {
-                slide.classList.remove('active');
-                slide.classList.add('exit');
-                setTimeout(() => slide.classList.remove('exit'), 500);
-            }
+        document.body.addEventListener('click', () => { if(!audioContext || !musicInterval) tryAutoPlay(); }, { once: true });
+        const musicBtn = document.getElementById('musicBtn');
+        musicBtn.addEventListener('click', () => {
+            musicPlaying = !musicPlaying;
+            if(musicPlaying) { musicBtn.classList.add('playing'); playBirthdayMusic(); }
+            else { musicBtn.classList.remove('playing'); if(musicInterval) clearInterval(musicInterval); musicInterval = null; }
         });
-        if(dotsDiv.children.length) {
-            const dotIndex = index % dotsDiv.children.length;
-            Array.from(dotsDiv.children).forEach((d, i) => { d.classList.toggle('active', i === dotIndex); });
+        setTimeout(tryAutoPlay, 800);
+
+        // ------ عيد ميلاد 9 يوليو (الأشهر: 0=يناير، 6=يوليو) ------
+        const BIRTHDAY = { month: 6, day: 9 };
+        function getNextBirthday() {
+            const now = new Date();
+            let birthday = new Date(now.getFullYear(), BIRTHDAY.month, BIRTHDAY.day);
+            if (now > birthday) birthday = new Date(now.getFullYear() + 1, BIRTHDAY.month, BIRTHDAY.day);
+            return birthday;
         }
-    }
+        function updateCountdown() {
+            const now = new Date();
+            const next = getNextBirthday();
+            const diff = next - now;
+            const countdownSec = document.getElementById('countdownSection');
+            const msgDiv = document.getElementById('birthdayMessage');
+            if (diff <= 0) { countdownSec.style.display = 'none'; msgDiv.style.display = 'block'; startConfetti(); return; }
+            countdownSec.style.display = 'block'; msgDiv.style.display = 'none';
+            document.getElementById('days').innerHTML = Math.floor(diff/(1000*60*60*24)).toString().padStart(2,'0');
+            document.getElementById('hours').innerHTML = Math.floor((diff%(86400000))/(1000*60*60)).toString().padStart(2,'0');
+            document.getElementById('minutes').innerHTML = Math.floor((diff%(3600000))/(1000*60)).toString().padStart(2,'0');
+            document.getElementById('seconds').innerHTML = Math.floor((diff%60000)/1000).toString().padStart(2,'0');
+        }
+        setInterval(updateCountdown, 1000); updateCountdown();
 
-    function rotateWish() {
-        currentWishIndex = (currentWishIndex + 1) % hundredWishes.length;
-        showWish(currentWishIndex);
-    }
+        function startConfetti() {
+            const canvas = document.getElementById('confettiCanvas'); const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            let particles = [];
+            for(let i=0;i<100;i++) particles.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height-canvas.height, size: Math.random()*6+2, color: `hsl(${Math.random()*60+40},100%,60%)`, speedY: Math.random()*4+2, speedX: (Math.random()-0.5)*1.5, rot:0, rotSpeed: (Math.random()-0.5)*8 });
+            function animate() {
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                let alive = false;
+                for(let p of particles) { if(p.y < canvas.height+40) alive=true; p.y+=p.speedY; p.x+=p.speedX; p.rot+=p.rotSpeed; ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180); ctx.fillStyle=p.color; ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size); ctx.restore(); }
+                if(alive) requestAnimationFrame(animate); else ctx.clearRect(0,0,canvas.width,canvas.height);
+            }
+            animate();
+        }
 
-    buildSlider();
-    showWish(0);
-    setInterval(rotateWish, 4000);
+        // ------ 100+ رسالة تهنئة دوارة ------
+        const hundredWishes = [
+            "🎉 كل سنة وأنت طيب يا محمد! عقبال 100 سنة","🌟 أنت شخص رائع، يستحق كل الخير في عيده","💛 عيد ميلاد سعيد، ربنا يخليك لينا","🎂 كل عام وأنت بألف خير، يا أغلى الناس","✨ سنة جديدة سعيدة، مليئة بالنجاحات","💪 أنت الأفضل دائماً","🎈 عقبال مليون سنة يا محمد","🌹 كل سنة وأنت زهرة في بستان الحلوين","🏆 أنت الفائز دائماً","💙 من القلب أتمنى لك عاماً رائعاً","🎁 أهديك كل الحب","🍰 عيد ميلاد سعيد يا محمد","💫 أنت نجم ساطع","🌈 حياتك ملونة بالفرح","🌸 كل سنة وأنت طيب","🌟 نجاحاتك تتوج عامك","💛 أنت مصدر إلهام","🎉 أفراحك تملأ الدنيا","⭐ كل سنة وأنت بخير","🎂 سنة حلوة","💪 أنت قوي ورائع","🌹 يوم ميلادك يوم فرح","✨ أتمنى لك سنة مليئة بالضحك","🎈 كل لحظة معك جميلة","💙 أنت شخص استثنائي","🏆 أنت البطل الحقيقي","📚 علمتنا النجاح ليس صدفة","💚 من القلب أتمنى لك عاماً رائعاً","🌞 يومك مثل الشمس","🎁 أهديك كل الحب والتقدير","🍰 عيد ميلاد سعيد","🕯️ كل شمعة هي أمنية","💫 أنت نجم ساطع لا يخفت","🌈 حياتك ملونة","🌸 كل سنة وأنت زهرة","🍃 يوم ميلادك بداية جديدة","📖 أنت قصة نجاح","🧡 ضحكتك تريح القلب","🎯 أهدافك تتحقق","🔥 حماسك يلهم الجميع","🕊️ سلام وهدوء وفرح","🌊 مثل البحر عطاؤك لا ينضب","🏔️ أنت قوي مثل الجبال","🍫 حياتك حلوة","🎨 كل يوم في عمرك لوحة جميلة","💎 أنت جوهرة نادرة","🌲 شامخ مثل الشجر","🎼 حياتك لحن جميل","🦋 كل سنة وأنت تتطور","🧭 أنت بوصلة الخير","🎢 عيد ميلادك بداية رحلة جديدة","🍀 حظك سعيد","🌠 أمنياتك تتحقق","🧘 أنت مصدر سلام","🏅 أنت البطل الحقيقي","💪 قدرتك على التحدي استثنائية","🧩 أنت قطعة البازل المهمة","🕰️ كل ثانية معك ثمينة","💌 رسالتي لك: أنت مميز","🌙 أتمنى لك ليالي سعيدة","☀️ صباحك نور","🍬 ابتسامتك حلوة","🧸 طيبتك تجعل الجميع يحبك","🎭 حياتك مسرحية جميلة","🎪 كل يوم معك احتفال","🌿 أنت مثل النسمة العليلة","🌼 أزهار الربيع تتفتح فرحاً","🍁 أنت شاب إلى الأبد","❄️ أنت منير كالجليد","🔥 شغفك نار تحرق الصعاب","💖 قلوبنا معك","🎊 أفراحنا تكتمل بوجودك","📿 ربنا يخليك لينا","🌹 كل ورود العالم لا تكفي","🕯️ أدعو الله أن يطيل عمرك"
+        ];
 
-    // ========== إضافة رسالة جديدة من خلال الصندوق (تضاف لقائمة الـ 100 رسالة ديناميكياً) ==========
-    const wishInput = document.getElementById('wishInput');
-    const sendWishBtn = document.getElementById('sendWishBtn');
-    const PHONE_NUMBER = "201111751660";
+        let currentWishIdx = 0;
+        const sliderDiv = document.getElementById('wishSlider');
+        const dotsDiv = document.getElementById('wishDots');
 
-    sendWishBtn.addEventListener('click', () => {
-        const newWish = wishInput.value.trim();
-        if(newWish === "") { alert("الرجاء كتابة تهنئتك أولاً"); return; }
-        hundredWishes.push(`💌 ${newWish} (من صديق) 💌`);
-        const wasAtEnd = (currentWishIndex === hundredWishes.length - 2);
-        buildSlider();
-        if(wasAtEnd) currentWishIndex = hundredWishes.length - 1;
-        showWish(currentWishIndex);
-        
-        const message = `🎂 تهنئة لمحمد بمناسبة عيد ميلاده 🎂\n\n"${newWish}"\n\n🎉 كل سنة وأنت طيب يا جميل 🎉`;
-        window.open(`https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
-        wishInput.value = "";
-    });
+        function buildSlider() {
+            sliderDiv.innerHTML = '';
+            for(let i=0;i<hundredWishes.length;i++) {
+                const slide = document.createElement('div');
+                slide.className = 'wish-slide';
+                slide.innerHTML = `<div class="wish-text">✨ ${hundredWishes[i]} ✨</div><div class="wish-sender">— صديق محب 🎂</div>`;
+                if(i===currentWishIdx) slide.classList.add('active');
+                sliderDiv.appendChild(slide);
+            }
+            dotsDiv.innerHTML = '';
+            for(let i=0;i<Math.min(hundredWishes.length,5);i++) {
+                const dot = document.createElement('div');
+                dot.className = 'wish-dot';
+                if(i===0) dot.classList.add('active');
+                dotsDiv.appendChild(dot);
+            }
+        }
+        function showWish(index) {
+            const slides = document.querySelectorAll('.wish-slide');
+            if(!slides.length) return;
+            slides.forEach((s,i) => {
+                if(i===index) s.classList.add('active');
+                else s.classList.remove('active');
+            });
+            if(dotsDiv.children.length) {
+                const dotIdx = index % dotsDiv.children.length;
+                Array.from(dotsDiv.children).forEach((d,i)=> d.classList.toggle('active', i===dotIdx));
+            }
+        }
+        function rotateWish() { currentWishIdx = (currentWishIdx+1) % hundredWishes.length; showWish(currentWishIdx); }
+        buildSlider(); showWish(0);
+        setInterval(rotateWish, 4000);
 
-    // ========== رسائل تحفيزية متغيرة ==========
-    const messages = ["🌟 يومك جميل، وضحكتك أجمل، كل سنة وأنت طيب", "🎉 عيد ميلاد سعيد، فرحتك تملأ الدنيا", "💛 كل عام وأنت نور في حياة كل من حولك", "⭐ عقبال 100 سنة، وأنت في أحسن حال", "🎂 سنة جديدة سعيدة، مليئة بالإنجازات والنجاحات", "💪 أنت قوي، أنت رائع، أنت مميز", "🌹 يوم ميلادك، يوم فرح لكل من يعرفك", "✨ أتمنى لك سنة مليئة بالضحك والسعادة", "🎈 كل لحظة معك جميلة، كل سنة وأنت بخير", "💙 أنت شخص استثنائي، يستحق كل الخير"];
-    let msgIdx = 0;
-    function rotateInspire() {
-        const el = document.getElementById('inspireMessage');
-        if(el) { el.style.opacity = '0'; setTimeout(() => { el.innerHTML = `✨ "${messages[msgIdx]}" ✨`; el.style.opacity = '1'; msgIdx = (msgIdx + 1) % messages.length; }, 300); }
-    }
-    setInterval(rotateInspire, 5000); rotateInspire();
+        // ------ إضافة أمنية جديدة (تضاف للقائمة الدوارة) ------
+        const wishInput = document.getElementById('wishInput');
+        const sendBtn = document.getElementById('sendWishBtn');
+        const WA_NUMBER = "201111751660";
+        sendBtn.addEventListener('click', () => {
+            const newWish = wishInput.value.trim();
+            if(!newWish) { alert("اكتب تهنئتك أولاً"); return; }
+            hundredWishes.push(`💌 ${newWish} (من صديق) 💌`);
+            const wasLast = (currentWishIdx === hundredWishes.length-2);
+            buildSlider();
+            if(wasLast) currentWishIdx = hundredWishes.length-1;
+            showWish(currentWishIdx);
+            const message = `🎂 تهنئة لمحمد بمناسبة عيد ميلاده 🎂\n\n"${newWish}"\n\n🎉 كل سنة وأنت طيب يا جميل 🎉`;
+            window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+            wishInput.value = "";
+        });
 
-    // ========== عناصر متحركة ==========
-    function createFloatingElements() {
-        const container = document.getElementById('floatingElements');
-        for(let i = 0; i < 30; i++) { const e = document.createElement('div'); e.classList.add('heart'); e.innerHTML = Math.random() > 0.5 ? '❤️' : '💛'; e.style.left = Math.random() * 100 + '%'; e.style.animationDuration = Math.random() * 4 + 4 + 's'; e.style.animationDelay = Math.random() * 10 + 's'; e.style.fontSize = (Math.random() * 15 + 15) + 'px'; container.appendChild(e); }
-        for(let i = 0; i < 15; i++) { const e = document.createElement('div'); e.classList.add('gift'); e.innerHTML = Math.random() > 0.5 ? '🎁' : '🎀'; e.style.left = Math.random() * 100 + '%'; e.style.animationDuration = Math.random() * 5 + 6 + 's'; e.style.animationDelay = Math.random() * 15 + 's'; e.style.fontSize = (Math.random() * 20 + 25) + 'px'; container.appendChild(e); }
-    }
-    createFloatingElements();
+        // ------ رسائل تحفيزية متغيرة ------
+        const inspires = ["🌟 كل سنة وأنت طيب يا محمد","🎉 عيد ميلاد سعيد، فرحتك تملأ الدنيا","💛 كل عام وأنت نور","⭐ عقبال 100 سنة","🎂 سنة جديدة سعيدة","💪 أنت قوي ورائع","🌹 يوم ميلادك يوم فرح","✨ أتمنى لك سنة جميلة","🎈 كل لحظة معك جميلة","💙 أنت شخص استثنائي"];
+        let inspIdx=0;
+        function rotateInspire() {
+            const el = document.getElementById('inspireMessage');
+            if(el){ el.style.opacity='0'; setTimeout(()=>{ el.innerHTML=`✨ "${inspires[inspIdx]}" ✨`; el.style.opacity='1'; inspIdx=(inspIdx+1)%inspires.length; },300); }
+        }
+        setInterval(rotateInspire, 5000); rotateInspire();
 
-    function createStars() {
+        // ------ عناصر متحركة خفيفة (قلوب وهدايا مناسبة للهاتف) ------
+        const floatingContainer = document.getElementById('floatingElements');
+        function createFloating() {
+            floatingContainer.innerHTML = '';
+            const itemsCount = 18;
+            for(let i=0;i<itemsCount;i++) {
+                const el = document.createElement('div');
+                el.className = 'floating-item';
+                const isHeart = Math.random()>0.5;
+                el.innerHTML = isHeart ? (Math.random()>0.5 ? '❤️' : '💛') : (Math.random()>0.5 ? '🎁' : '🎀');
+                el.style.left = Math.random() * 100 + '%';
+                el.style.animation = `floatUp ${Math.random() * 5 + 5}s linear infinite`;
+                el.style.animationDelay = Math.random() * 12 + 's';
+                el.style.fontSize = (Math.random() * 15 + 18) + 'px';
+                el.style.opacity = 0.6;
+                floatingContainer.appendChild(el);
+            }
+        }
+        createFloating();
+
+        // ------ نجوم خفيفة ------
         const starsContainer = document.getElementById('stars');
-        for(let i = 0; i < 150; i++) { const s = document.createElement('div'); s.classList.add('star'); s.style.width = Math.random() * 3 + 1 + 'px'; s.style.height = s.style.width; s.style.left = Math.random() * 100 + '%'; s.style.top = Math.random() * 100 + '%'; s.style.animationDelay = Math.random() * 5 + 's'; starsContainer.appendChild(s); }
-    }
-    createStars();
+        for(let i=0;i<100;i++) {
+            const s = document.createElement('div'); s.classList.add('star');
+            s.style.width = (Math.random()*2+1)+'px'; s.style.height = s.style.width;
+            s.style.left = Math.random()*100+'%'; s.style.top = Math.random()*100+'%';
+            s.style.animationDelay = Math.random()*5+'s';
+            starsContainer.appendChild(s);
+        }
 
-    const popup = document.getElementById('welcomePopup'); if(!localStorage.getItem('popupShownBirthday')) { setTimeout(() => popup.classList.add('show'), 300); localStorage.setItem('popupShownBirthday', 'true'); }
-    document.getElementById('closePopup').addEventListener('click', () => popup.classList.remove('show'));
-    document.getElementById('shareBtn').addEventListener('click', () => window.open(`https://wa.me/?text=${encodeURIComponent('🎂 كل سنة وأنت طيب يا محمد 🎂 تعال شاركني في الاحتفال بعيد ميلادك')}%20${encodeURIComponent(window.location.href)}`, '_blank'));
+        // ------ popup ترحيبي ------
+        const popup = document.getElementById('welcomePopup');
+        if(!localStorage.getItem('popupMohamedShown')) { setTimeout(()=>popup.classList.add('show'),400); localStorage.setItem('popupMohamedShown','true'); }
+        document.getElementById('closePopup').addEventListener('click',()=>popup.classList.remove('show'));
+        document.getElementById('shareBtn').addEventListener('click',()=>{
+            window.open(`https://wa.me/?text=${encodeURIComponent('🎂 كل سنة وأنت طيب يا محمد 🎂 تعال شاركني الاحتفال')}%20${encodeURIComponent(window.location.href)}`,'_blank');
+        });
+    })();
 </script>
 </body>
 </html>
