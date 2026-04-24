@@ -2,11 +2,10 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>UC VICTOR MAN | متجر شحن شدات ببجي</title>
-    <link rel="icon" type="image/svg+xml" href="mohamed.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>عيد ميلاد محمد 🎂 | محمد</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFD700'%3E%3Cpath d='M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2Z'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <style>
         * {
             margin: 0;
@@ -14,705 +13,853 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #ff6600;
-            --primary-dark: #e55a00;
-            --primary-light: #ff8833;
-            --bg-dark: #0a0a0a;
-            --bg-light: #f5f0e8;
-            --card-dark: #1a1a1a;
-            --card-light: #ffffff;
-            --text-dark: #ffffff;
-            --text-light: #1a1a2e;
-            --gray: #888888;
-            --success: #00c851;
-            --gold: #ffd700;
-        }
-
         body {
-            background: var(--bg-dark);
-            color: var(--text-dark);
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #0a0a0a 100%);
             font-family: 'Cairo', 'Segoe UI', 'Poppins', system-ui, sans-serif;
-            transition: all 0.3s ease;
-            padding-bottom: 70px;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        body.light {
-            background: var(--bg-light);
-            color: var(--text-light);
-        }
-
-        /* خلفية متحركة */
-        .bg-animation {
+        /* خلفية النجوم */
+        .stars {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            pointer-events: none;
             z-index: 0;
         }
-        .bg-animation .orb {
+        .star {
             position: absolute;
+            background: #FFD700;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
+            opacity: 0.6;
+            animation: twinkle 3s infinite;
         }
-        .orb-1 { width: 300px; height: 300px; background: var(--primary); top: -100px; left: -100px; animation: float 20s infinite; }
-        .orb-2 { width: 400px; height: 400px; background: var(--primary); bottom: -150px; right: -150px; animation: float 25s infinite reverse; }
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(50px, 50px); }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
 
+        /* قلوب متطايرة */
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 20px;
+            animation: floatHeart 6s infinite ease-in;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes floatHeart {
+            0% { bottom: -50px; opacity: 0; transform: translateX(0); }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { bottom: 110%; opacity: 0; transform: translateX(40px); }
+        }
+
+        /* هدايا متحركة */
+        .gift {
+            position: absolute;
+            bottom: -80px;
+            font-size: 30px;
+            animation: floatGift 8s infinite ease-in;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes floatGift {
+            0% { bottom: -80px; opacity: 0; transform: translateX(0) rotate(0deg); }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { bottom: 110%; opacity: 0; transform: translateX(-30px) rotate(10deg); }
+        }
+
+        /* الحاوية الرئيسية */
         .container {
             position: relative;
-            z-index: 1;
-            max-width: 1200px;
-            margin: 0 auto;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
         }
 
-        /* رأس الصفحة */
-        .hero {
-            text-align: center;
-            padding: 30px 20px;
-        }
-        .hero-icon {
-            font-size: 3rem;
-            color: var(--primary);
-        }
-        .hero h1 {
-            font-size: 2.2rem;
-            margin: 15px 0;
-        }
-        .hero h1 span {
-            color: var(--primary);
-        }
-        .hero p {
-            font-size: 1rem;
-            opacity: 0.8;
-        }
-        .profile-img {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary);
-            margin: 20px auto;
-            display: block;
-            box-shadow: 0 10px 25px rgba(255, 102, 0, 0.3);
-        }
-        .badges {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
-        .badge {
-            background: rgba(255, 102, 0, 0.15);
-            border: 1px solid rgba(255, 102, 0, 0.3);
-            padding: 6px 18px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-        }
-
-        /* أزرار التواصل */
-        .contact-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 25px 0;
-            flex-wrap: wrap;
-        }
-        .btn-contact {
-            padding: 14px 35px;
+        /* البطاقة الرئيسية */
+        .birthday-card {
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(20px);
             border-radius: 60px;
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: 0.3s;
-            font-size: 1rem;
+            padding: 50px 40px;
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.2);
+            transition: all 0.3s;
         }
-        .btn-wa { background: #25D366; color: white; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); }
-        .btn-tg { background: #0088cc; color: white; box-shadow: 0 5px 15px rgba(0, 136, 204, 0.3); }
-        .btn-contact:hover { transform: translateY(-3px); filter: brightness(1.05); }
 
-        /* أقسام الصفحات */
-        .page {
+        /* أيقونة التاج */
+        .crown-icon {
+            font-size: 4rem;
+            color: #FFD700;
+            margin-bottom: 20px;
+            animation: crownGlow 2s infinite;
+        }
+        @keyframes crownGlow {
+            0%, 100% { text-shadow: 0 0 10px #FFD700; }
+            50% { text-shadow: 0 0 30px #FFD700, 0 0 10px #FFA500; }
+        }
+
+        /* تأثير كتابة الاسم */
+        .name-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .typing-text {
+            border-right: 3px solid #FFD700;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: typing 2s steps(20, end), blink 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: #FFD700; }
+        }
+
+        /* العداد */
+        .countdown-title {
+            font-size: 1.2rem;
+            color: #FFD700;
+            margin: 30px 0 20px;
+            letter-spacing: 2px;
+        }
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .countdown-box {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 20px;
+            min-width: 100px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            transition: transform 0.3s;
+        }
+        .countdown-box:hover {
+            transform: translateY(-5px);
+            border-color: #FFD700;
+        }
+        .countdown-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #FFD700;
+            font-family: monospace;
+        }
+        .countdown-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 5px;
+        }
+
+        /* رسالة عيد الميلاد (تظهر عند الانتهاء) */
+        .birthday-message {
             display: none;
-            animation: fadeIn 0.4s ease;
+            animation: fadeInUp 0.8s ease;
         }
-        .page.active {
-            display: block;
+        .birthday-message h2 {
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin-bottom: 20px;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+        .birthday-message p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: white;
+        }
+        .cake-icon {
+            font-size: 5rem;
+            margin: 20px 0;
+            display: inline-block;
+            animation: cakeBounce 1s infinite;
+        }
+        @keyframes cakeBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* عناوين الأقسام */
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 30px 0 20px;
-            font-size: 1.4rem;
-        }
-        .section-title i {
-            color: var(--primary);
-        }
-
-        /* بطاقات المميزات */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        .feature-card {
-            background: var(--card-dark);
-            border-radius: 25px;
-            padding: 25px 15px;
-            text-align: center;
-            transition: 0.3s;
-            border: 1px solid rgba(255, 102, 0, 0.15);
-        }
-        body.light .feature-card {
-            background: var(--card-light);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-        .feature-card i {
-            font-size: 2.2rem;
-            color: var(--primary);
-            margin-bottom: 12px;
-        }
-        .feature-card h3 {
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-        .feature-card p {
-            font-size: 0.8rem;
-            opacity: 0.7;
-        }
-
-        /* بطاقات العروض */
-        .offers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        .offer-card {
-            background: var(--card-dark);
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            transition: 0.3s;
-            border: 1px solid rgba(255, 102, 0, 0.2);
-            cursor: pointer;
-        }
-        body.light .offer-card {
-            background: var(--card-light);
-        }
-        .offer-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--primary);
-        }
-        .offer-card h3 {
-            font-size: 1.3rem;
-            color: var(--primary);
-        }
-        .offer-card .price {
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        .offer-card .price small {
-            font-size: 0.7rem;
-            opacity: 0.6;
-        }
-        .btn-order {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            border: none;
-            padding: 8px 20px;
-            border-radius: 40px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            transition: 0.2s;
-        }
-        .btn-order:hover {
-            opacity: 0.9;
-        }
-
-        /* آراء العملاء (Swiper) */
-        .reviews-swiper {
-            padding: 15px 0;
-            margin-bottom: 30px;
-        }
-        .review-item {
-            background: var(--card-dark);
-            border-radius: 25px;
-            padding: 20px;
-            text-align: center;
-            border: 1px solid rgba(255, 102, 0, 0.15);
-        }
-        body.light .review-item {
-            background: var(--card-light);
-        }
-        .stars {
-            color: var(--gold);
-            margin-bottom: 10px;
-        }
-        .review-text {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin: 10px 0;
-        }
-        .review-author {
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        /* Trust Badges */
-        .trust-section {
-            background: var(--card-dark);
-            border-radius: 30px;
-            padding: 20px;
+        /* رسائل ملهمة متغيرة (أكثر من 100 رسالة) */
+        .inspire-message {
             margin: 30px 0;
-            text-align: center;
+            padding: 15px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 50px;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.5s;
         }
-        body.light .trust-section {
-            background: var(--card-light);
+
+        /* جملة بكل حب وتقدير */
+        .love-message {
+            margin: 20px 0;
+            padding: 12px;
+            background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,215,0,0.05));
+            border-radius: 50px;
+            font-size: 1.1rem;
+            color: #FFF8DC;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
-        .trust-grid {
+
+        /* قسم أمنيات الأصدقاء */
+        .wishes-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.05);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        .wishes-title {
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        .wishes-container {
             display: flex;
-            justify-content: center;
-            gap: 30px;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 5px;
+        }
+        .wish-item {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: white;
+            text-align: right;
+        }
+        .wish-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
             flex-wrap: wrap;
         }
-        .trust-item {
-            text-align: center;
+        .wish-input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 30px;
+            border: 1px solid #FFD700;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-family: inherit;
         }
-        .trust-item i {
+        .send-wish-btn {
+            background: #FFD700;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .send-wish-btn:hover {
+            transform: scale(1.02);
+        }
+
+        /* زر الموسيقى */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 55px;
+            height: 55px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 2px solid #FFD700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: 0.3s;
+            color: #FFD700;
             font-size: 1.5rem;
-            color: var(--success);
+        }
+        .music-btn:hover {
+            transform: scale(1.1);
+            background: #FFD700;
+            color: #0a0a0a;
+        }
+        .music-btn.playing {
+            animation: musicPulse 1s infinite;
+        }
+        @keyframes musicPulse {
+            0%, 100% { box-shadow: 0 0 5px #FFD700; }
+            50% { box-shadow: 0 0 20px #FFD700; }
+        }
+
+        /* زر مشاركة */
+        .share-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 55px;
+            height: 55px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 2px solid #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: 0.3s;
+            color: #25D366;
+            font-size: 1.5rem;
+        }
+        .share-btn:hover {
+            transform: scale(1.1);
+            background: #25D366;
+            color: white;
+        }
+
+        /* نافذة منبثقة ترحيبية */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .popup-overlay.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        .popup-content {
+            background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+            border: 2px solid #FFD700;
+            border-radius: 50px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: popupZoom 0.4s ease;
+        }
+        @keyframes popupZoom {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .popup-content h2 {
+            color: #FFD700;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        .close-popup {
+            background: #FFD700;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        /* ألعاب نارية */
+        canvas#confettiCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1001;
         }
 
         /* التذييل */
         .footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 20px;
-            border-top: 1px solid rgba(255, 102, 0, 0.2);
-            font-size: 0.75rem;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.5);
         }
-        .developer a {
-            color: var(--primary);
+        .footer a {
+            color: #FFD700;
             text-decoration: none;
         }
 
-        /* شريط التنقل السفلي (ثابت) */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.97);
-            backdrop-filter: blur(20px);
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 15px;
-            border-top: 1px solid rgba(255, 102, 0, 0.3);
-            z-index: 100;
-        }
-        body.light .bottom-nav {
-            background: rgba(255, 255, 255, 0.97);
-        }
-        .nav-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            background: none;
-            border: none;
-            color: var(--text-dark);
-            font-size: 0.7rem;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 30px;
-            transition: 0.2s;
-        }
-        body.light .nav-btn { color: var(--text-light); }
-        .nav-btn i { font-size: 1.2rem; }
-        .nav-btn.active {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* زر العودة للأعلى */
-        .scroll-top {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            width: 45px;
-            height: 45px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 99;
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
-        }
-        .scroll-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* إشعار */
-        .toast {
-            position: fixed;
-            bottom: 90px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--primary);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 50px;
-            z-index: 200;
-            transition: 0.3s;
-            opacity: 0;
-            visibility: hidden;
-            font-size: 0.8rem;
-        }
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-            visibility: visible;
-        }
-
-        @media (max-width: 768px) {
-            .container { padding: 15px; }
-            .hero h1 { font-size: 1.6rem; }
-            .btn-contact { padding: 10px 20px; font-size: 0.85rem; }
-            .features-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .offers-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .profile-img { width: 80px; height: 80px; }
-        }
-
-        @media (min-width: 1024px) {
-            .features-grid { grid-template-columns: repeat(6, 1fr); }
-            .offers-grid { grid-template-columns: repeat(4, 1fr); }
+        @media (max-width: 600px) {
+            .birthday-card { padding: 30px 20px; }
+            .name-title { font-size: 1.8rem; }
+            .countdown-number { font-size: 2rem; }
+            .countdown-box { min-width: 70px; padding: 15px; }
+            .countdown-container { gap: 10px; }
         }
     </style>
 </head>
 <body>
 
-<div class="bg-animation">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-</div>
+<!-- نجوم متحركة -->
+<div class="stars" id="stars"></div>
 
+<!-- ألعاب نارية -->
+<canvas id="confettiCanvas"></canvas>
+
+<!-- قلوب وهدايا متطايرة -->
+<div id="floatingElements"></div>
+
+<!-- الحاوية الرئيسية -->
 <div class="container">
-    <!-- الصفحة الرئيسية -->
-    <div id="home" class="page active">
-        <div class="hero">
-            <div class="hero-icon"><i class="fas fa-crown"></i></div>
-            <h1>UC <span>VICTOR MAN</span></h1>
-            <p>⚡ أرخص سعر × سرعة × الأقوى في مصر ⚡</p>
-            <img src="mohamed.jpg" alt="فيكتور مان" class="profile-img" id="profileImg">
-            <div class="badges">
-                <div class="badge"><i class="fas fa-check-circle"></i> شحن فوري</div>
-                <div class="badge"><i class="fas fa-tag"></i> أرخص سعر</div>
-                <div class="badge"><i class="fas fa-shield-alt"></i> 100% آمن</div>
-            </div>
+    <div class="birthday-card">
+        <div class="crown-icon"><i class="fas fa-crown"></i></div>
+        <div class="name-title">
+            <span class="typing-text">محمد</span>
         </div>
+        <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">كل سنة وأنت طيب</p>
 
-        <div class="contact-buttons">
-            <a href="https://wa.me/201044905798" class="btn-contact btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> واتساب</a>
-            <a href="https://t.me/GnStore3" class="btn-contact btn-tg" target="_blank"><i class="fab fa-telegram"></i> تليجرام</a>
-        </div>
-
-        <!-- مميزاتنا -->
-        <div class="section-title"><i class="fas fa-star"></i> مميزاتنا</div>
-        <div class="features-grid">
-            <div class="feature-card"><i class="fas fa-bolt"></i><h3>سرعة فائقة</h3><p>شحن فوري خلال دقائق</p></div>
-            <div class="feature-card"><i class="fas fa-tag"></i><h3>أرخص سعر</h3><p>الأقوى في مصر</p></div>
-            <div class="feature-card"><i class="fas fa-shield-alt"></i><h3>شحن آمن</h3><p>ضمان استلام 100%</p></div>
-            <div class="feature-card"><i class="fas fa-headset"></i><h3>دعم 24/7</h3><p>خدمة عملاء متواصلة</p></div>
-            <div class="feature-card"><i class="fas fa-gem"></i><h3>توصيل فوري</h3><p>بعد تأكيد الدفع</p></div>
-            <div class="feature-card"><i class="fas fa-medal"></i><h3>الأقوى في مصر</h3><p>الأكثر ثقة</p></div>
-        </div>
-
-        <!-- عروض سريعة -->
-        <div class="section-title"><i class="fas fa-fire"></i> عروض سريعة</div>
-        <div class="offers-grid" id="quickOffersGrid"></div>
-
-        <!-- آراء العملاء (Swiper) -->
-        <div class="section-title"><i class="fas fa-comments"></i> آراء عملائنا</div>
-        <div class="swiper reviews-swiper" id="reviewsSwiper">
-            <div class="swiper-wrapper" id="reviewsWrapper"></div>
-            <div class="swiper-pagination"></div>
-        </div>
-
-        <!-- Trust Badges -->
-        <div class="trust-section">
-            <div class="trust-grid">
-                <div class="trust-item"><i class="fas fa-shield-alt"></i><p>دفع آمن</p></div>
-                <div class="trust-item"><i class="fas fa-truck-fast"></i><p>توصيل فوري</p></div>
-                <div class="trust-item"><i class="fas fa-money-bill-wave"></i><p>ضمان استرداد</p></div>
-                <div class="trust-item"><i class="fas fa-users"></i><p>5000+ عميل</p></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- صفحة شحن QR -->
-    <div id="qr" class="page">
-        <div class="section-title"><i class="fas fa-qrcode"></i> شحن بالاكونت QR</div>
-        <div class="offers-grid" id="qrOffersGrid"></div>
-    </div>
-
-    <!-- صفحة شحن ID -->
-    <div id="id" class="page">
-        <div class="section-title"><i class="fas fa-gamepad"></i> شحن ببجي ID</div>
-        <div class="offers-grid" id="idOffersGrid"></div>
-    </div>
-
-    <!-- صفحة المميزات -->
-    <div id="features" class="page">
-        <div class="section-title"><i class="fas fa-gem"></i> مميزاتنا</div>
-        <div class="features-grid">
-            <div class="feature-card"><i class="fas fa-bolt"></i><h3>سرعة فائقة</h3><p>شحن فوري خلال دقائق</p></div>
-            <div class="feature-card"><i class="fas fa-tag"></i><h3>أرخص سعر</h3><p>الأفضل في مصر</p></div>
-            <div class="feature-card"><i class="fas fa-headset"></i><h3>دعم 24/7</h3><p>خدمة عملاء متواصلة</p></div>
-            <div class="feature-card"><i class="fas fa-shield-alt"></i><h3>شحن آمن</h3><p>ضمان استلام 100%</p></div>
-            <div class="feature-card"><i class="fas fa-gem"></i><h3>توصيل فوري</h3><p>بعد تأكيد الدفع</p></div>
-            <div class="feature-card"><i class="fas fa-medal"></i><h3>الأقوى في مصر</h3><p>الأكثر ثقة</p></div>
-        </div>
-    </div>
-
-    <!-- صفحة اتصل بنا -->
-    <div id="contact" class="page">
-        <div class="section-title"><i class="fas fa-headset"></i> تواصل معنا</div>
-        <div class="contact-buttons">
-            <a href="https://wa.me/201044905798" class="btn-contact btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> واتساب</a>
-            <a href="https://t.me/GnStore3" class="btn-contact btn-tg" target="_blank"><i class="fab fa-telegram"></i> تليجرام</a>
-        </div>
-        <div class="trust-section">
-            <p><i class="fas fa-envelope"></i> البريد الإلكتروني</p>
-            <p style="font-size: 1rem; margin-top: 5px;">abdonagdy843@gmail.com</p>
-        </div>
-        <div class="trust-section">
-            <div class="trust-grid">
-                <div class="trust-item"><i class="fas fa-check-circle"></i><p>شحن فوري</p></div>
-                <div class="trust-item"><i class="fas fa-check-circle"></i><p>أرخص سعر</p></div>
-                <div class="trust-item"><i class="fas fa-check-circle"></i><p>دعم 24 ساعة</p></div>
-            </div>
-        </div>
-        <p style="text-align: center; margin: 20px 0; color: var(--primary);">⚠️ ممنوع الاستعجال - شحن فوري وآمن</p>
-    </div>
-
-    <div class="footer">
-        <p>© 2025 UC VICTOR MAN | متجر شحن شدات ببجي</p>
-        <p class="developer"><i class="fab fa-telegram"></i> المطور: <a href="https://t.me/C3CCC3C" target="_blank">Mohamed Mustafa</a></p>
-    </div>
-</div>
-
-<!-- شريط التنقل السفلي -->
-<div class="bottom-nav">
-    <button class="nav-btn active" data-page="home"><i class="fas fa-home"></i><span>الرئيسية</span></button>
-    <button class="nav-btn" data-page="qr"><i class="fas fa-qrcode"></i><span>شحن QR</span></button>
-    <button class="nav-btn" data-page="id"><i class="fas fa-gamepad"></i><span>شحن ID</span></button>
-    <button class="nav-btn" data-page="features"><i class="fas fa-star"></i><span>مميزاتنا</span></button>
-    <button class="nav-btn" data-page="contact"><i class="fas fa-headset"></i><span>اتصل بنا</span></button>
-</div>
-
-<button class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></button>
-<div id="toast" class="toast"></div>
-
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script>
-    // ========== بيانات العروض ==========
-    // عروض QR مع تحديد النوع
-    const qrOffers = [
-        { uc: 325, price: 210, type: "QR", typeName: "شحن بالاكونت QR" },
-        { uc: 385, price: 260, type: "QR", typeName: "شحن بالاكونت QR" },
-        { uc: 660, price: 415, type: "QR", typeName: "شحن بالاكونت QR" },
-        { uc: 720, price: 465, type: "QR", typeName: "شحن بالاكونت QR" },
-        { uc: 985, price: 625, type: "QR", typeName: "شحن بالاكونت QR" },
-        { uc: 1320, price: 830, type: "QR", typeName: "شحن بالاكونت QR" },
-        { uc: 1800, price: 1050, type: "QR", typeName: "شحن بالاكونت QR" },
-        { uc: 3850, price: 2080, type: "QR", typeName: "شحن بالاكونت QR" },
-        { uc: 8100, price: 4120, type: "QR", typeName: "شحن بالاكونت QR" }
-    ];
-
-    // عروض ID مع تحديد النوع
-    const idOffers = [
-        { uc: 60, price: 55, type: "ID", typeName: "شحن ببجي ID" },
-        { uc: 120, price: 110, type: "ID", typeName: "شحن ببجي ID" },
-        { uc: 325, price: 230, type: "ID", typeName: "شحن ببجي ID" },
-        { uc: 385, price: 285, type: "ID", typeName: "شحن ببجي ID" },
-        { uc: 660, price: 440, type: "ID", typeName: "شحن ببجي ID" },
-        { uc: 720, price: 495, type: "ID", typeName: "شحن ببجي ID" },
-        { uc: 985, price: 670, type: "ID", typeName: "شحن ببجي ID" },
-        { uc: 1800, price: 1130, type: "ID", typeName: "شحن ببجي ID" },
-        { uc: 3850, price: 2280, type: "ID", typeName: "شحن ببجي ID" },
-        { uc: 8100, price: 4350, type: "ID", typeName: "شحن ببجي ID" }
-    ];
-
-    // عروض سريعة (أول 4 عروض من QR)
-    const quickOffers = qrOffers.slice(0, 4);
-
-    // رقم الواتساب الخاص بالمتجر
-    const WHATSAPP_NUMBER = "201044905798";
-
-    // ========== دالة إنشاء رسالة واتساب مخصصة ==========
-    function getWhatsAppMessage(offer) {
-        const message = `لو سمحت انا عاوز اشحن *${offer.typeName}* 🎮
-
-┌─────────────────
-│ 📦 عدد الشدات: ${offer.uc} UC
-│ 💰 السعر: ${offer.price} ج.م
-│ 🚀 الشحن: فوري
-└─────────────────
-
-📲 ياريت تبعتلي رقم الكاش الخاص بالتحويل
-وشكراً 🌟
-
-#UC_VICTOR_MAN`;
-        
-        return encodeURIComponent(message);
-    }
-
-    // ========== عرض البطاقات ==========
-    function renderOffers(containerId, offers) {
-        const container = document.getElementById(containerId);
-        if(!container) return;
-        container.innerHTML = offers.map(offer => `
-            <div class="offer-card">
-                <h3>${offer.uc} UC</h3>
-                <div class="price">${offer.price} <small>ج.م</small></div>
-                <button class="btn-order" data-uc="${offer.uc}" data-price="${offer.price}" data-type="${offer.type}" data-typename="${offer.typeName}">اطلب</button>
-            </div>
-        `).join('');
-    }
-
-    renderOffers('quickOffersGrid', quickOffers);
-    renderOffers('qrOffersGrid', qrOffers);
-    renderOffers('idOffersGrid', idOffers);
-
-    // ========== آراء العملاء (15 رأي) ==========
-    const reviews = [
-        { name: "أحمد محمد", stars: 5, text: "أفضل متجر شدات في مصر، شحن فوري وسعر ممتاز" },
-        { name: "كريم سيد", stars: 5, text: "تعامل راقي وسرعة في الشحن، أنصح بالتعامل معهم" },
-        { name: "محمد حسن", stars: 5, text: "أرخص سعر لقيتهم هنا، وشحن خلال دقائق" },
-        { name: "سارة علي", stars: 5, text: "خدمة ممتازة وسريعة، شكراً فيكتور مان" },
-        { name: "يوسف صلاح", stars: 5, text: "أفضل متجر شدات ببجي في مصر بلا منافس" },
-        { name: "أحمد كمال", stars: 5, text: "شحن سريع وأسعار تنافسية، سأتعامل معهم مرة أخرى" },
-        { name: "منة الله", stars: 5, text: "تجربة ممتازة، شكراً على الخدمة الرائعة" },
-        { name: "محمود عبدالله", stars: 5, text: "أسرع شحن تعاملت معه، يستحق 5 نجوم" },
-        { name: "هاجر مصطفى", stars: 5, text: "خدمة عملاء ممتازة واستجابة سريعة" },
-        { name: "خالد يوسف", stars: 5, text: "أسعار ممتازة وشحن فوري" },
-        { name: "إسلام عبدالرحمن", stars: 5, text: "متجر موثوق 100%، أنصح به بشدة" },
-        { name: "نور الهدى", stars: 5, text: "شكراً على الشحن السريع والأسعار الرائعة" },
-        { name: "حسن الشافعي", stars: 5, text: "خدمة ممتازة، يستحق التجربة" },
-        { name: "زينب محمد", stars: 5, text: "أفضل متجر شدات في مصر" },
-        { name: "عمر طارق", stars: 5, text: "شحن فوري وأرخص سعر" }
-    ];
-
-    // عرض التقييمات في Swiper
-    const reviewsWrapper = document.getElementById('reviewsWrapper');
-    if(reviewsWrapper) {
-        reviewsWrapper.innerHTML = reviews.map(r => `
-            <div class="swiper-slide">
-                <div class="review-item">
-                    <div class="stars">${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)}</div>
-                    <p class="review-text">"${r.text}"</p>
-                    <p class="review-author">- ${r.name}</p>
+        <!-- العداد التنازلي -->
+        <div id="countdownSection">
+            <div class="countdown-title">🎂 المتبقي على عيد ميلادك 🎂</div>
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">يوم</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">ساعة</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">دقيقة</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">ثانية</div>
                 </div>
             </div>
-        `).join('');
+        </div>
 
-        new Swiper('.reviews-swiper', {
-            loop: true,
-            autoplay: { delay: 4000, disableOnInteraction: false },
-            pagination: { el: '.swiper-pagination', clickable: true },
-            slidesPerView: 1,
-            spaceBetween: 20,
-            breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
-        });
+        <!-- رسالة عيد الميلاد (تظهر عند الانتهاء) -->
+        <div id="birthdayMessage" class="birthday-message">
+            <div class="cake-icon">🎂🎉</div>
+            <h2>🎉 كل سنة وأنت بخير 🎉</h2>
+            <p>عيد ميلاد سعيد يا محمد<br>أتمنى لك عاماً مليئاً بالفرح والنجاح والسعادة</p>
+            <div class="cake-icon">🎈🎁✨</div>
+        </div>
+
+        <!-- جملة بكل حب وتقدير (لون فاتح) -->
+        <div class="love-message">
+            💛 بكل حب وتقدير، كل سنة وأنت نور حياتنا 💛
+        </div>
+
+        <!-- رسائل ملهمة متغيرة (أكثر من 100 رسالة) -->
+        <div class="inspire-message" id="inspireMessage">
+            "أنت شخص رائع، يومك جميل، وكل لحظة في حياتك تستحق الاحتفال"
+        </div>
+
+        <!-- قسم أمنيات الأصدقاء -->
+        <div class="wishes-section">
+            <div class="wishes-title">💌 أمنيات الأصدقاء 💌</div>
+            <div class="wishes-container" id="wishesContainer">
+                <div class="wish-item">🎉 كل سنة وأنت طيب يا محمد! - أحمد</div>
+                <div class="wish-item">🌟 عقبال 100 سنة يا غالي! - كريم</div>
+                <div class="wish-item">💛 ربنا يخليك لينا - سارة</div>
+            </div>
+            
+            <!-- زر إرسال تهنئة عبر واتساب -->
+            <div class="wish-form">
+                <input type="text" id="wishInput" class="wish-input" placeholder="اكتب تهنئتك هنا...">
+                <button id="sendWishBtn" class="send-wish-btn">🎁 أرسل تهنئة</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 - بكل الحب والتقدير | <a href="https://t.me/C3CCC3C" target="_blank">Mohamed Mustafa</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- زر الموسيقى -->
+<button class="music-btn playing" id="musicBtn"><i class="fas fa-music"></i></button>
+
+<!-- زر مشاركة -->
+<button class="share-btn" id="shareBtn"><i class="fab fa-whatsapp"></i></button>
+
+<!-- نافذة منبثقة ترحيبية -->
+<div id="welcomePopup" class="popup-overlay">
+    <div class="popup-content">
+        <i class="fas fa-gift" style="font-size: 3rem; color: #FFD700;"></i>
+        <h2>🎉 مرحباً يا محمد 🎉</h2>
+        <p style="color: white;">نحن نحتفل بقرب عيد ميلادك<br>كل عام وأنت بألف خير</p>
+        <button class="close-popup" id="closePopup">🎂 ادخل للاحتفال 🎂</button>
+    </div>
+</div>
+
+<script>
+    // ========== موسيقى عيد ميلاد (تشغيل تلقائي، إيقاف يدوي) ==========
+    let audioContext = null;
+    let musicPlaying = true;
+    let musicInterval = null;
+    let currentNote = 0;
+    const melody = [262, 294, 330, 349, 392, 440, 494, 523]; // نغمات بسيطة
+
+    function playBirthdayMusic() {
+        if(!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if(musicInterval) clearInterval(musicInterval);
+        
+        musicInterval = setInterval(() => {
+            if(musicPlaying) {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                oscillator.frequency.value = melody[currentNote % melody.length];
+                gainNode.gain.value = 0.15;
+                oscillator.start();
+                gainNode.gain.exponentialRampToValueAtTime(0.00001, audioContext.currentTime + 0.3);
+                oscillator.stop(audioContext.currentTime + 0.3);
+                currentNote++;
+            }
+        }, 400);
     }
 
-    // ========== التنقل بين الصفحات ==========
-    const pages = document.querySelectorAll('.page');
-    const navBtns = document.querySelectorAll('.nav-btn');
-
-    function showPage(pageId) {
-        pages.forEach(p => p.classList.remove('active'));
-        document.getElementById(pageId).classList.add('active');
-        navBtns.forEach(btn => btn.classList.remove('active'));
-        document.querySelector(`.nav-btn[data-page="${pageId}"]`).classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    // محاولة تشغيل الموسيقى تلقائياً (مع تفعيل الصوت بعد تفاعل المستخدم)
+    function tryAutoPlay() {
+        if(audioContext && audioContext.state === 'suspended') {
+            audioContext.resume().then(() => {
+                playBirthdayMusic();
+            });
+        } else if(!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            audioContext.resume().then(() => {
+                playBirthdayMusic();
+            });
+        } else {
+            playBirthdayMusic();
+        }
     }
 
-    navBtns.forEach(btn => {
-        btn.addEventListener('click', () => showPage(btn.dataset.page));
-    });
+    // تشغيل الموسيقى تلقائياً بعد تفاعل المستخدم (لأن المتصفحات تمنع التشغيل التلقائي)
+    document.body.addEventListener('click', () => {
+        if(!audioContext || !musicInterval) {
+            tryAutoPlay();
+        }
+    }, { once: true });
 
-    // ========== معالج الطلب مع رسالة واتساب مخصصة ==========
-    const toast = document.getElementById('toast');
-    function showToastMsg(msg) {
-        toast.innerText = msg;
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2000);
-    }
-
-    document.addEventListener('click', (e) => {
-        if(e.target.classList.contains('btn-order')) {
-            const uc = e.target.dataset.uc;
-            const price = e.target.dataset.price;
-            const typeName = e.target.dataset.typename;
-            
-            // إنشاء كائن العرض
-            const offer = {
-                uc: uc,
-                price: price,
-                typeName: typeName
-            };
-            
-            // إنشاء رسالة واتساب
-            const message = getWhatsAppMessage(offer);
-            
-            // عرض إشعار
-            showToastMsg(`✨ جاري تحويلك لطلب ${uc} UC ✨`);
-            
-            // فتح واتساب بعد 1.5 ثانية
-            setTimeout(() => {
-                window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
-            }, 1500);
+    // زر الموسيقى (إيقاف/تشغيل)
+    const musicBtn = document.getElementById('musicBtn');
+    musicBtn.addEventListener('click', () => {
+        musicPlaying = !musicPlaying;
+        if(musicPlaying) {
+            musicBtn.classList.add('playing');
+            playBirthdayMusic();
+        } else {
+            musicBtn.classList.remove('playing');
+            if(musicInterval) clearInterval(musicInterval);
+            musicInterval = null;
         }
     });
 
-    // ========== زر العودة للأعلى ==========
-    const scrollBtn = document.getElementById('scrollTop');
-    window.addEventListener('scroll', () => {
-        if(window.scrollY > 300) scrollBtn.classList.add('show');
-        else scrollBtn.classList.remove('show');
+    // تشغيل الموسيقى بعد ثانية من فتح الصفحة (محاولة)
+    setTimeout(() => {
+        tryAutoPlay();
+    }, 1000);
+
+    // ========== تاريخ عيد الميلاد (9 يوليو) ==========
+    const BIRTHDAY = { month: 6, day: 9 };
+
+    function getNextBirthday() {
+        const now = new Date();
+        let birthday = new Date(now.getFullYear(), BIRTHDAY.month, BIRTHDAY.day);
+        if (now > birthday) {
+            birthday = new Date(now.getFullYear() + 1, BIRTHDAY.month, BIRTHDAY.day);
+        }
+        return birthday;
+    }
+
+    function updateCountdown() {
+        const now = new Date();
+        const nextBirthday = getNextBirthday();
+        const diff = nextBirthday - now;
+
+        const countdownSection = document.getElementById('countdownSection');
+        const birthdayMessage = document.getElementById('birthdayMessage');
+
+        if (diff <= 0) {
+            countdownSection.style.display = 'none';
+            birthdayMessage.style.display = 'block';
+            startConfetti();
+            return;
+        }
+
+        countdownSection.style.display = 'block';
+        birthdayMessage.style.display = 'none';
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (86400000)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (3600000)) / (1000 * 60));
+        const seconds = Math.floor((diff % 60000) / 1000);
+
+        document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+        document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // ========== ألعاب نارية ==========
+    function startConfetti() {
+        const canvas = document.getElementById('confettiCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const particles = [];
+        for(let i = 0; i < 150; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height - canvas.height,
+                size: Math.random() * 8 + 3,
+                color: `hsl(${Math.random() * 60 + 40}, 100%, 60%)`,
+                speedY: Math.random() * 5 + 3,
+                speedX: (Math.random() - 0.5) * 2,
+                rotation: Math.random() * 360,
+                rotationSpeed: (Math.random() - 0.5) * 10
+            });
+        }
+        
+        function animateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let stillFalling = false;
+            for(let p of particles) {
+                if(p.y < canvas.height + 50) stillFalling = true;
+                p.y += p.speedY;
+                p.x += p.speedX;
+                p.rotation += p.rotationSpeed;
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rotation * Math.PI / 180);
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+                ctx.restore();
+            }
+            if(stillFalling) requestAnimationFrame(animateConfetti);
+            else ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+        animateConfetti();
+    }
+
+    // ========== 100+ رسائل تحفيز وتهنئة (بدون كلمة ملك) ==========
+    const messages = [
+        "🌟 يومك جميل، وضحكتك أجمل، كل سنة وأنت طيب",
+        "🎉 عيد ميلاد سعيد، فرحتك تملأ الدنيا",
+        "💛 كل عام وأنت نور في حياة كل من حولك",
+        "⭐ عقبال 100 سنة، وأنت في أحسن حال",
+        "🎂 سنة جديدة سعيدة، مليئة بالإنجازات والنجاحات",
+        "💪 أنت قوي، أنت رائع، أنت مميز",
+        "🌹 يوم ميلادك، يوم فرح لكل من يعرفك",
+        "✨ أتمنى لك سنة مليئة بالضحك والسعادة",
+        "🎈 كل لحظة معك جميلة، كل سنة وأنت بخير",
+        "💙 أنت شخص استثنائي، يستحق كل الخير",
+        "🏆 أنت الفائز دائماً، في الحياة وفي كل شيء",
+        "📚 علمتنا أن النجاح ليس صدفة، بل إصرار",
+        "💚 من القلب أتمنى لك عاماً رائعاً",
+        "🌞 يومك مثل الشمس، مشرق ودافئ",
+        "🎁 أهديك كل الحب والتقدير في يوم ميلادك",
+        "🍰 عيد ميلاد سعيد، يا صاحب القلب الكبير",
+        "🕯️ كل شمعة في كعكتك، هي أمنية من أصدقائك",
+        "💫 أنت نجم ساطع، لا يخفت أبداً",
+        "🌈 حياتك ملونة بألوان الفرح والسعادة",
+        "🌸 كل سنة وأنت زهرة في بستان الحلوين",
+        "🍃 يوم ميلادك هو بداية فصل جديد من الإبداع",
+        "📖 أنت قصة نجاح تُكتب بأحرف من ذهب",
+        "🧡 ضحكتك تريح القلب، ابتسامتك تشرق الدنيا",
+        "🎯 أهدافك دائماً تتحقق، لأنك تستحق الأفضل",
+        "🔥 حماسك وشغفك يلهم الجميع, كل سنة وأنت مبدع",
+        "🕊️ سلام وهدوء وفرح، هذا ما أتمناه لك",
+        "🌊 مثل البحر، عمقك كبير وعطاؤك لا ينضب",
+        "🏔️ أنت قوي مثل الجبال، ناصع مثل الثلج",
+        "🍫 حياتك حلوة، مثل الشوكولاتة",
+        "🎨 كل يوم في عمرك هو لوحة فنية جميلة",
+        "💎 أنت جوهرة نادرة وغالية على قلوبنا",
+        "🌲 شامخ مثل الشجر، عظيم في كل شيء",
+        "🎼 حياتك مثل اللحن الجميل، تريح السامعين",
+        "🦋 كل سنة وأنت تتحول لأجمل نسخة من نفسك",
+        "🧭 أنت بوصلة الخير في حياتنا",
+        "🎢 يوم ميلادك هو بداية رحلة جديدة ممتعة",
+        "🍀 حظك سعيد، وقلبك حنون، وروحك طيبة",
+        "🌠 أمنياتك كلها تتحقق، لأنك تستحقها",
+        "🧘 أنت مصدر سلام للجميع",
+        "🏅 أنت البطل الحقيقي، الفائز في ميدان الحياة",
+        "💪 قدرتك على التحدي تجعلك شخصاً استثنائياً",
+        "🧩 أنت قطعة البازل التي تجعل الصورة كاملة",
+        "🕰️ كل ثانیه معك ثمينة، كل يوم وسنة وأنت بخير",
+        "💌 رسالتي لك: أنت مميز، وأتمنى لك كل الخير",
+        "🌙 أتمنى لك ليالي مليئة بالأحلام السعيدة",
+        "☀️ صباحك نور، ونهارك فرح، ومساؤك سلام",
+        "🍬 ابتسامتك حلوة مثل السكر",
+        "🧸 طيبتك تجعل الجميع يحبك",
+        "🎭 حياتك مسرحية جميلة، وأنت بطلها",
+        "🎪 كل يوم معك هو احتفال، وكل سنة وأنت جميل",
+        "🌿 أنت مثل النسمة العليلة، تريح القلوب",
+        "🌼 أزهار الربيع تتفتح فرحاً بيوم ميلادك",
+        "🍁 خريف العمر لا يأتي, بل أنت شاب إلى الأبد",
+        "❄️ أنت منير كالجليد، نقي كالثلج",
+        "🔥 شغفك نار تحرق الصعاب",
+        "💖 قلوبنا معك، في حزنك وفرحك",
+        "🎊 أفراحنا تكتمل بوجودك",
+        "🎁 هديتي لك: الدعاء بأن تكون سعيداً دائماً",
+        "📿 ربنا يخليك لينا، ويحميك من كل شر",
+        "🌹 كل ورود العالم لا تكفي لوصف جمال روحك",
+        "🕯️ أدعو الله أن يطيل في عمرك، ويبارك فيه"
+    ];
+
+    let msgIndex = 0;
+    function changeInspireMessage() {
+        const msgEl = document.getElementById('inspireMessage');
+        if(msgEl) {
+            msgEl.style.opacity = '0';
+            setTimeout(() => {
+                msgEl.innerHTML = `✨ "${messages[msgIndex]}" ✨`;
+                msgEl.style.opacity = '1';
+                msgIndex = (msgIndex + 1) % messages.length;
+            }, 300);
+        }
+    }
+    setInterval(changeInspireMessage, 5000);
+    changeInspireMessage();
+
+    // ========== إضافة أمنيات جديدة ==========
+    const wishesContainer = document.getElementById('wishesContainer');
+    const wishInput = document.getElementById('wishInput');
+    
+    function addWish(wishText, fromName = 'صديق') {
+        const wishDiv = document.createElement('div');
+        wishDiv.classList.add('wish-item');
+        wishDiv.innerHTML = `💌 ${wishText} - ${fromName}`;
+        wishesContainer.insertBefore(wishDiv, wishesContainer.firstChild);
+        if(wishesContainer.children.length > 10) {
+            wishesContainer.removeChild(wishesContainer.lastChild);
+        }
+    }
+
+    // إرسال عبر واتساب
+    const sendWishBtn = document.getElementById('sendWishBtn');
+    const PHONE_NUMBER = "201111751660"; // +20 111 175 1660
+    
+    sendWishBtn.addEventListener('click', () => {
+        const wish = wishInput.value.trim();
+        if(wish === "") {
+            alert("الرجاء كتابة تهنئتك أولاً");
+            return;
+        }
+        const message = `🎂 تهنئة لمحمد بمناسبة عيد ميلاده 🎂\n\n"${wish}"\n\n🎉 كل سنة وأنت طيب يا جميل 🎉`;
+        const encodedMessage = encodeURIComponent(message);
+        window.open(`https://wa.me/${PHONE_NUMBER}?text=${encodedMessage}`, '_blank');
+        
+        // إضافة للقائمة على الموقع
+        addWish(wish, "أنت");
+        wishInput.value = "";
     });
-    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // ========== قلوب وهدايا متطايرة ==========
+    function createFloatingElements() {
+        const container = document.getElementById('floatingElements');
+        for(let i = 0; i < 30; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💛';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = Math.random() * 4 + 4 + 's';
+            heart.style.animationDelay = Math.random() * 10 + 's';
+            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            container.appendChild(heart);
+        }
+        for(let i = 0; i < 15; i++) {
+            const gift = document.createElement('div');
+            gift.classList.add('gift');
+            gift.innerHTML = Math.random() > 0.5 ? '🎁' : '🎀';
+            gift.style.left = Math.random() * 100 + '%';
+            gift.style.animationDuration = Math.random() * 5 + 6 + 's';
+            gift.style.animationDelay = Math.random() * 15 + 's';
+            gift.style.fontSize = (Math.random() * 20 + 25) + 'px';
+            container.appendChild(gift);
+        }
+    }
+    createFloatingElements();
+
+    // ========== إنشاء النجوم ==========
+    function createStars() {
+        const starsContainer = document.getElementById('stars');
+        for(let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.width = Math.random() * 3 + 1 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 5 + 's';
+            starsContainer.appendChild(star);
+        }
+    }
+    createStars();
+
+    // ========== نافذة منبثقة ترحيبية ==========
+    const popup = document.getElementById('welcomePopup');
+    if(!localStorage.getItem('popupShownBirthday')) {
+        setTimeout(() => {
+            popup.classList.add('show');
+        }, 300);
+        localStorage.setItem('popupShownBirthday', 'true');
+    }
+    document.getElementById('closePopup').addEventListener('click', () => {
+        popup.classList.remove('show');
+    });
+
+    // ========== زر مشاركة ==========
+    document.getElementById('shareBtn').addEventListener('click', () => {
+        const url = encodeURIComponent(window.location.href);
+        const text = encodeURIComponent('🎂 كل سنة وأنت طيب يا محمد 🎂 تعال شاركني في الاحتفال بعيد ميلادك');
+        window.open(`https://wa.me/?text=${text}%20${url}`, '_blank');
+    });
 </script>
 </body>
 </html>
